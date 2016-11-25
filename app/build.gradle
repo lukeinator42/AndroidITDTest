@@ -5,7 +5,7 @@ android {
     buildToolsVersion "24.0.1"
 
     defaultConfig {
-        applicationId "com.tatalab.wallachillusion"
+        applicationId "com.tatalab.audiotest"
         minSdkVersion 19
         targetSdkVersion 24
         versionCode 1
