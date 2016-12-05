@@ -23,10 +23,9 @@ import android.media.AudioTrack;
 import android.opengl.GLES20;
 import android.opengl.Matrix;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Vibrator;
 import android.util.Log;
-import com.google.vr.sdk.audio.GvrAudioEngine;
+
 import com.google.vr.sdk.base.AndroidCompat;
 import com.google.vr.sdk.base.Eye;
 import com.google.vr.sdk.base.GvrActivity;
@@ -34,9 +33,6 @@ import com.google.vr.sdk.base.GvrView;
 import com.google.vr.sdk.base.HeadTransform;
 import com.google.vr.sdk.base.Viewport;
 import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -44,6 +40,7 @@ import java.io.InputStreamReader;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.FloatBuffer;
+
 import javax.microedition.khronos.egl.EGLConfig;
 
 /**
@@ -135,72 +132,101 @@ public class AudioTestActivity extends GvrActivity implements GvrView.StereoRend
   private int shift = 0;
   private double audioAngle = 0;
 
-  private void setAngle(double angle)
-  {
+  double c;
+  double dist;
 
-    double c = 336.628;
-    double dist = 0.14;
+  int numBeamsPerHemifield;
+  int numLags;
 
-    int numBeamsPerHemifield = (int) Math.ceil( (dist/c)*48000 );
-    int numLags = 2*numBeamsPerHemifield +1;
+  int shiftAmount[];
+  int angle = 0;
+
+  private void initAudioParams() {
+    c = 336.628;
+    dist = 0.14;
+
+    numBeamsPerHemifield = (int) Math.ceil( (dist/c)*48000 );
+    numLags = 2*numBeamsPerHemifield +1;
+
+    //only shifts of even numbers work correctly, so numlags gets divided by two, and then the
+    //shift amount is multiplied by two.
+    numLags /= 2;
 
 
-    shift = (int) ((angle/Math.PI)*(double) numLags);
+    shiftAmount = new int[360];
 
+    for(int i=0; i<90; i++)
+      shiftAmount[i] = (int) ((i/90.0)*numLags);
 
-    Log.i(TAG,"The num lags: " + String.valueOf(shift));
-     //Log.i(TAG,"The angle: " + String.valueOf(angle));
+    for(int i=90; i<180; i++)
+      shiftAmount[i] = numLags - (int) ((i%90/90.0)*numLags);
 
+    for(int i=180; i<270; i++)
+      shiftAmount[i] = (int) ((i%90/90.0)*numLags);
+
+    for(int i=270; i<360; i++)
+      shiftAmount[i] = numLags - (int) ((i%90/90.0)*numLags);
   }
 
-  //private AudioTrack boxSound = generateTone(500, 10);
   public void playWav(){
 
     while(true) {
 
 
       int minBufferSize = AudioTrack.getMinBufferSize(48000, AudioFormat.CHANNEL_OUT_STEREO, AudioFormat.ENCODING_PCM_16BIT);
-      int bufferSize = 1024;
+      int bufferSize = 512;
       AudioTrack at = new AudioTrack(AudioManager.STREAM_MUSIC, 48000, AudioFormat.CHANNEL_OUT_STEREO, AudioFormat.ENCODING_PCM_16BIT, minBufferSize, AudioTrack.MODE_STREAM);
 
 
-      int i;
+      int i, j, k;
 
-      byte[] s = new byte[bufferSize];
+      byte[] s0 = new byte[bufferSize];
+      byte[] s1 = new byte[bufferSize];
+      byte[] s2 = new byte[bufferSize];
       try {
         InputStream is = getAssets().open("cube_sound.wav");
 
+        i = is.read(s0, 0, bufferSize);
+        j = is.read(s1, 0, bufferSize);
+
+
         at.play();
-        while ((i = is.read(s, 0, bufferSize)) > -1) {
-          int shift2 = shift;
-          byte[] ster = new byte[bufferSize * 2 + 3];
 
-          boolean left = false;
 
-          if (shift2 < 0) {
-            left = true;
-            shift2 *= -1;
+        while ((k = is.read(s2, 0, bufferSize)) > -1) {
+
+          int shift = shiftAmount[angle];
+          byte[] ster = new byte[bufferSize * 2];
+
+          //shift amount is only for right ear, so if the angle is > 180 this means the right ear
+          //is farther away from the sound source, so the shift offset is negative.
+          if(angle > 180)
+            shift *= -1;
+
+          //static happens when the shift amount is odd, so numLags is divided by two, and then
+          // shift gets multiplied by two so the shift amount is always even
+          shift *= 2;
+
+          Log.i(TAG,"The shift: " + shift);
+
+
+          byte[] concat = new byte[bufferSize*3];
+
+          System.arraycopy(s0, 0, concat, 0, s0.length);
+          System.arraycopy(s1, 0, concat, s0.length, s1.length);
+          System.arraycopy(s2, 0, concat, s0.length+s1.length, s2.length);
+
+          for (int l = 0; l < bufferSize; l += 2) {
+            ster[l * 2 + 0] = concat[bufferSize+l];
+            ster[l * 2 + 1] = concat[bufferSize+l+1];
+            ster[l * 2 + 2] = concat[bufferSize+l+shift];
+            ster[l * 2 + 3] = concat[bufferSize+l+shift+1];
           }
 
-          byte[] s2 = new byte[i + shift2];
+          at.write(ster, 0, bufferSize*2);
 
-          for (int j = 0; j < shift2; j++)
-            s2[j] = 0;
-
-          System.arraycopy(s, 0, s2, shift2, i);
-
-          double lsum, rsum;
-
-          for (int j = 0; j < bufferSize; j += 2) {
-            ster[j * 2 + 0] = (left ? s[j] : s2[j]);
-            ster[j * 2 + 1] = (left ? s[j + 1] : s2[j + 1]);
-            ster[j * 2 + 2] = (left ? s2[j] : s2[j]);
-            ster[j * 2 + 3] = (left ? s2[j + 1] : s[j + 1]);
-          }
-
-
-
-          at.write(ster, 0, i * 2 + 3);
+          System.arraycopy(s1, 0, s0, 0, s1.length);
+          System.arraycopy(s2, 0, s1, 0, s2.length);
 
         }
         at.stop();
@@ -439,6 +465,13 @@ public class AudioTestActivity extends GvrActivity implements GvrView.StereoRend
     Matrix.setIdentityM(modelFloor, 0);
     Matrix.translateM(modelFloor, 0, 0, -floorDepth, 0); // Floor appears below user.
 
+
+    initAudioParams();
+
+
+    //Log.i(TAG,"The shift ang: " + Arrays.toString(shiftAmount));
+
+
     // Avoid any delays during start-up due to decoding of sound files.
     new Thread(
             new Runnable() {
@@ -479,12 +512,6 @@ public class AudioTestActivity extends GvrActivity implements GvrView.StereoRend
     Matrix.translateM(modelCube, 0, modelPosition[0], modelPosition[1], modelPosition[2]);
 
 
-
-//    // Update the sound location to match it with the new cube position.
-//    if (sourceId != GvrAudioEngine.INVALID_ID) {
-//      gvrAudioEngine.setSoundObjectPosition(
-//              sourceId, modelPosition[0], modelPosition[1], modelPosition[2]);
-//    }
     checkGLError("updateCubePosition");
   }
 
@@ -527,10 +554,6 @@ public class AudioTestActivity extends GvrActivity implements GvrView.StereoRend
 
     // Update the 3d audio engine with the most recent head rotation.
     headTransform.getQuaternion(headRotation, 0);
-//    gvrAudioEngine.setHeadRotation(
-//            headRotation[0], headRotation[1], headRotation[2], headRotation[3]);
-//    // Regular update call to GVR audio engine.
-//    gvrAudioEngine.update();
     
     System.arraycopy(forwardVector, 0, prevForwardVector, 0, 3);
     headTransform.getForwardVector(forwardVector, 0);
@@ -540,9 +563,14 @@ public class AudioTestActivity extends GvrActivity implements GvrView.StereoRend
     
     audioAngle += deltaAngle;
 
-    double objectDeltaAngle = ((Math.atan2(forwardVector[0], forwardVector[2])
-            - Math.atan2(modelPosition[0], modelPosition[2]))+2*Math.PI)%(Math.PI/2);
-    setAngle(objectDeltaAngle);
+    double objectDeltaAngle = (Math.atan2(forwardVector[0], forwardVector[2])
+            - Math.atan2(modelPosition[0], modelPosition[2])+2*Math.PI)*360/(2*Math.PI);
+
+
+
+    angle = (int) objectDeltaAngle;
+
+
 
     checkGLError("onReadyToDraw");
   }
