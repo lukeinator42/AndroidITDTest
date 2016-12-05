@@ -6,19 +6,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e72ea074-8ad3-446d-9569-618cf0e10dfa" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/outputFileStates.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/generated/mockable-android-24.jar" afterPath="$PROJECT_DIR$/build/generated/mockable-android-24.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/tatalab/audiotest/AudioTestActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/tatalab/audiotest/AudioTestActivity.java" />
     </list>
     <ignored path="AndroidAudioTest.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -43,12 +31,12 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/tatalab/audiotest/AudioTestActivity.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.1611185">
-              <caret line="154" column="4" selection-start-line="154" selection-start-column="4" selection-end-line="154" selection-end-column="4" />
+              <caret line="154" column="0" selection-start-line="154" selection-start-column="0" selection-end-line="154" selection-end-column="0" />
               <folding>
-                <element signature="e#15706#16766#0" expanded="true" />
-                <element signature="e#16765#16766#0" expanded="true" />
-                <element signature="e#18992#18993#0" expanded="true" />
-                <element signature="e#19060#19061#0" expanded="true" />
+                <element signature="e#15702#16762#0" expanded="true" />
+                <element signature="e#16761#16762#0" expanded="true" />
+                <element signature="e#18988#18989#0" expanded="true" />
+                <element signature="e#19056#19057#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -2547,6 +2535,13 @@
       <option name="number" value="Default" />
       <updated>1479922807328</updated>
     </task>
+    <task id="LOCAL-00001" summary="itd now working">
+      <created>1480959842965</created>
+      <option name="number" value="00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1480959842965</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -2593,6 +2588,10 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="itd now working" />
+    <option name="LAST_COMMIT_MESSAGE" value="itd now working" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <option name="time" value="1" />
@@ -2605,10 +2604,10 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#15706#16766#0" expanded="true" />
-            <element signature="e#16765#16766#0" expanded="true" />
-            <element signature="e#18992#18993#0" expanded="true" />
-            <element signature="e#19060#19061#0" expanded="true" />
+            <element signature="e#15702#16762#0" expanded="true" />
+            <element signature="e#16761#16762#0" expanded="true" />
+            <element signature="e#18988#18989#0" expanded="true" />
+            <element signature="e#19056#19057#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2650,10 +2649,10 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#15706#16766#0" expanded="true" />
-            <element signature="e#16765#16766#0" expanded="true" />
-            <element signature="e#18992#18993#0" expanded="true" />
-            <element signature="e#19060#19061#0" expanded="true" />
+            <element signature="e#15702#16762#0" expanded="true" />
+            <element signature="e#16761#16762#0" expanded="true" />
+            <element signature="e#18988#18989#0" expanded="true" />
+            <element signature="e#19056#19057#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2695,10 +2694,10 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#15706#16766#0" expanded="true" />
-            <element signature="e#16765#16766#0" expanded="true" />
-            <element signature="e#18992#18993#0" expanded="true" />
-            <element signature="e#19060#19061#0" expanded="true" />
+            <element signature="e#15702#16762#0" expanded="true" />
+            <element signature="e#16761#16762#0" expanded="true" />
+            <element signature="e#18988#18989#0" expanded="true" />
+            <element signature="e#19056#19057#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2740,10 +2739,10 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#15706#16766#0" expanded="true" />
-            <element signature="e#16765#16766#0" expanded="true" />
-            <element signature="e#18992#18993#0" expanded="true" />
-            <element signature="e#19060#19061#0" expanded="true" />
+            <element signature="e#15702#16762#0" expanded="true" />
+            <element signature="e#16761#16762#0" expanded="true" />
+            <element signature="e#18988#18989#0" expanded="true" />
+            <element signature="e#19056#19057#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2785,10 +2784,10 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#15706#16766#0" expanded="true" />
-            <element signature="e#16765#16766#0" expanded="true" />
-            <element signature="e#18992#18993#0" expanded="true" />
-            <element signature="e#19060#19061#0" expanded="true" />
+            <element signature="e#15702#16762#0" expanded="true" />
+            <element signature="e#16761#16762#0" expanded="true" />
+            <element signature="e#18988#18989#0" expanded="true" />
+            <element signature="e#19056#19057#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2860,12 +2859,12 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/tatalab/audiotest/AudioTestActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.1611185">
-          <caret line="154" column="4" selection-start-line="154" selection-start-column="4" selection-end-line="154" selection-end-column="4" />
+          <caret line="154" column="0" selection-start-line="154" selection-start-column="0" selection-end-line="154" selection-end-column="0" />
           <folding>
-            <element signature="e#15706#16766#0" expanded="true" />
-            <element signature="e#16765#16766#0" expanded="true" />
-            <element signature="e#18992#18993#0" expanded="true" />
-            <element signature="e#19060#19061#0" expanded="true" />
+            <element signature="e#15702#16762#0" expanded="true" />
+            <element signature="e#16761#16762#0" expanded="true" />
+            <element signature="e#18988#18989#0" expanded="true" />
+            <element signature="e#19056#19057#0" expanded="true" />
           </folding>
         </state>
       </provider>
