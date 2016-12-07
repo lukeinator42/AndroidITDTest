@@ -129,8 +129,7 @@ public class AudioTestActivity extends GvrActivity implements GvrView.StereoRend
 
   private Vibrator vibrator;
 
-  private int shift = 0;
-  private double audioAngle = 0;
+
 
   double c;
   double dist;
@@ -561,7 +560,7 @@ public class AudioTestActivity extends GvrActivity implements GvrView.StereoRend
     double deltaAngle = (Math.atan2(forwardVector[0], forwardVector[2])
             - Math.atan2(prevForwardVector[0], prevForwardVector[2]));
     
-    audioAngle += deltaAngle;
+
 
     double objectDeltaAngle = (Math.atan2(forwardVector[0], forwardVector[2])
             - Math.atan2(modelPosition[0], modelPosition[2])+2*Math.PI)*360/(2*Math.PI);
